@@ -1,0 +1,10 @@
+{
+    "action": "promote",
+    "pull_request": {
+        "merged": "",
+        "commits": "",
+        "base": {
+            "ref": ""
+        }
+    }
+}

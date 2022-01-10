@@ -1,0 +1,19 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: gitops
+  namespace: openshift-gitops
+  labels:
+    app.kubernetes.io/instance: gitops
+spec:
+  destination:
+    namespace: default
+    server: https://kubernetes.default.svc
+  project: default
+  source:
+    path: deploy
+    repoURL: https://github.com/MY_ORG/iter8-gitops
+    targetRevision: main
+  syncPolicy:
+    automated:
+      prune: true
