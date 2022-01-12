@@ -85,7 +85,7 @@ spec:
     - name: REPO
       value: iter8-gitops
     - name: BRANCH
-      value: master
+      value: main 
     - name: GITHUB-TOKEN-SECRET
       value: github-token
     when:

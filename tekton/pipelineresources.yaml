@@ -8,8 +8,8 @@ spec:
     - name: url
       value: https://github.com/huang195/iter8-gitops.git
     - name: revision
-      value: master
+      value: main
     - name: refspec
-      value: refs/heads/master:refs/heads/master
+      value: refs/heads/main:refs/heads/main
     - name: depth
       value: "0"

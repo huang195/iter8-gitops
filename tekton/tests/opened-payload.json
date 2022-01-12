@@ -4,7 +4,7 @@
         "merged": "false",
         "commits": "1",
         "base": {
-            "ref": "master"
+            "ref": "main"
         }
     }
 }
