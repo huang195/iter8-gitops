@@ -13,7 +13,7 @@ spec:
   source:
     path: deploy/
     repoURL: https://github.com/huang195/iter8-gitops
-    targetRevision: master
+    targetRevision: main
   syncPolicy:
     automated:
       prune: true
