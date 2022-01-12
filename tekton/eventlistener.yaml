@@ -5,7 +5,8 @@ metadata:
 spec:
   serviceAccountName: pipeline
   triggers:
-  - template:
-      name: iter8-triggertemplate
+  - name: iter8-trigger
     bindings:
     - ref: iter8-triggerbinding
+    template:
+      ref: iter8-triggertemplate
