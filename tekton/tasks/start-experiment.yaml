@@ -26,7 +26,20 @@ spec:
     image: iter8/iter8:latest
     script: |
       #!/usr/bin/env sh
-      echo "this is the start-experiment task"
+      echo "Fetch basic experiment"
+      cd /tmp
+      iter8 hub -e load-test
+      cd load-test
+      CANDIDATE_SVC=`kubectl get services | grep iter8-app-candidate | awk '{print $3}'`:8000
+      yq eval -i ".url = \"${CANDIDATE_SVC}\"" values.yaml
+      echo "values.yaml"; echo ""
+      cat values.yaml
+      iter8 run --dry
+      echo "experiment.yaml"; echo ""
+      cat experiment.yaml
+      iter8 gen k8s > deploy.yaml
+      echo "deploy.yaml"; echo ""
+      cat deploy.yaml
   - name: git-commit
     image: alpine/git:latest
     script: |
@@ -34,8 +47,8 @@ spec:
       git config --global user.email 'iter8@iter8.tools'
       git config --global user.name 'Iter8'
       git clone https://$(params.USER):${GITHUB_TOKEN}@github.com/$(params.USER)/$(params.REPO) --branch=$(params.BRANCH)
-      cd iter8-gitops
-      echo "hello" > test
+      (cd templates; VERSION=$(params.VERSION) make)
+      (cd deploy; cp /tmp/deploy.yaml .)
       git add -A
       git commit -a -m 'start Iter8 experiment'
       git push -f origin $(params.BRANCH)
