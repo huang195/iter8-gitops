@@ -42,6 +42,30 @@ spec:
     - name: BRANCH
       value: $(params.BRANCH)
 
+  - name: promote-candidate
+    taskRef:
+      name: promote-candidate
+    resources:
+      inputs:
+        - name: source
+          resource: source
+    when:
+    - input: "$(tasks.is-build-needed.results.promote)"
+      operator: in
+      values: ["yes"]
+
+  - name: cleanup-candidate
+    taskRef:
+      name: cleanup-candidate
+    resources:
+      inputs:
+        - name: source
+          resource: source
+    when:
+    - input: "$(tasks.is-build-needed.results.cleanup)"
+      operator: in
+      values: ["yes"]
+
   - name: get-commit-id
     taskRef:
       name: get-commit-id

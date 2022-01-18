@@ -1,0 +1,23 @@
+apiVersion: tekton.dev/v1beta1
+kind: Task
+metadata:
+  name: promote-candidate
+  annotations:
+    tekton.dev/displayName: "Promote candidate version in the git repo"
+spec:
+  description: >-
+    This task promotes the candidate version in the git repo
+
+  resources:
+    inputs:
+    - name: source
+      type: git
+      description: Holds git repo
+
+  steps:
+  - name: promote-candidate
+    workingDir: $(resources.inputs.source.path)
+    image: alpine/git:latest
+    script: |
+      #!/usr/bin/env sh
+      echo "Promote candidate version"
