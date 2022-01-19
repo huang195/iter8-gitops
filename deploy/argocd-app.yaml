@@ -11,7 +11,7 @@ spec:
     server: https://kubernetes.default.svc
   project: default
   source:
-    path: deploy/
+    path: deploy
     repoURL: https://github.com/huang195/iter8-gitops
     targetRevision: main
   syncPolicy:

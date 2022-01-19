@@ -30,17 +30,17 @@ spec:
       git config --global user.email 'iter8@iter8.tools'
       git config --global user.name 'Iter8'
       git clone https://$(params.USER):${GITHUB_TOKEN}@github.com/$(params.USER)/$(params.REPO) --branch=$(params.BRANCH)
-      cd iter8-gitops
+      cd iter8-gitops/deploy
       CANDIDATE_SVC=`kubectl get services | grep iter8-app-candidate | awk '{print $3}'`:8000
       GATEWAY_SVC=`kubectl get route el-iter8-eventlistener --template='http://{{.spec.host}}'`
       # take advantage of /workspace shared directory between steps of the same task
-      sed "s#CANDIDATE_SVC#$CANDIDATE_SVC#g; s#GATEWAY_SVC#$GATEWAY_SVC#g" experiment.tpl > /workspace/experiment.yaml
+      sed "s#CANDIDATE_SVC#$CANDIDATE_SVC#g; s#GATEWAY_SVC#$GATEWAY_SVC#g" ../experiment.tpl > experiment.yaml
       echo "=========== experiment.yaml ===========";
-      cat /workspace/experiment.yaml
-      iter8 gen k8s > deploy/iter8.yaml
+      cat experiment.yaml
+      iter8 gen k8s > iter8.yaml
       echo "=========== iter8.yaml ==============="; echo ""
-      cat deploy/iter8.yaml
-      (cd templates; VERSION=$(params.VERSION) make)
+      cat iter8.yaml
+      (cd ../templates; VERSION=$(params.VERSION) make)
       git add -A
       git commit -a -m 'start Iter8 experiment'
       git push -f origin $(params.BRANCH)

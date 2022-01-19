@@ -45,10 +45,17 @@ spec:
   - name: promote-candidate
     taskRef:
       name: promote-candidate
-    resources:
-      inputs:
-        - name: source
-          resource: source
+    params:
+    - name: VERSION
+      value: $(tasks.get-commit-id.results.commit-id)
+    - name: USER
+      value: huang195 
+    - name: REPO
+      value: iter8-gitops
+    - name: BRANCH
+      value: main 
+    - name: GITHUB-TOKEN-SECRET
+      value: github-token
     when:
     - input: "$(tasks.is-build-needed.results.promote)"
       operator: in
@@ -57,10 +64,17 @@ spec:
   - name: cleanup-candidate
     taskRef:
       name: cleanup-candidate
-    resources:
-      inputs:
-        - name: source
-          resource: source
+    params:
+    - name: VERSION
+      value: $(tasks.get-commit-id.results.commit-id)
+    - name: USER
+      value: huang195 
+    - name: REPO
+      value: iter8-gitops
+    - name: BRANCH
+      value: main 
+    - name: GITHUB-TOKEN-SECRET
+      value: github-token
     when:
     - input: "$(tasks.is-build-needed.results.cleanup)"
       operator: in
