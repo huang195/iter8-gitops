@@ -6,4 +6,4 @@ candidate:
 	cat deployment-candidate.yaml | sed "s/VERSION/v$(VERSION)/g" > ../deploy/deployment-candidate.yaml
 
 clean:
-	rm -f ../deployment-candidate.yaml
+	rm -f ../deploy/deployment-candidate.yaml
