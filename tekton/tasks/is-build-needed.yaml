@@ -45,7 +45,7 @@ spec:
       then
         if [ $ACTION == 'promote' ]
         then
-          echo "Promote the candiate version"
+          echo "Promote the candidate version"
           printf yes > $(results.promote.path)
           printf no > $(results.cleanup.path)
           printf no > $(results.needed.path)
