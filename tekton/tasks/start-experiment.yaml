@@ -26,7 +26,7 @@ spec:
     image: iter8/iter8:latest
     script: |
       #!/usr/bin/env sh
-      apk add make
+      apt install -y make
       git config --global user.email 'iter8@iter8.tools'
       git config --global user.name 'Iter8'
       git clone https://$(params.USER):${GITHUB_TOKEN}@github.com/$(params.USER)/$(params.REPO) --branch=$(params.BRANCH)
