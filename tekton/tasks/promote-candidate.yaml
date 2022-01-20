@@ -33,7 +33,8 @@ spec:
       cd iter8-gitops/deploy
       rm -f iter8.yaml
       rm -f experiment.yaml
-      mv deployment-candidate.yaml deployment.yaml
+      sed 's/-candidate/-stable/g' deployment-candidate.yaml > deployment.yaml
+      rm -f deployment-candidate.yaml
 
       git add -A
       git commit -a -m 'Promote candidate version'
