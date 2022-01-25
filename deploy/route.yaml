@@ -1,0 +1,20 @@
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  annotations:
+    openshift.io/host.generated: "true"
+  labels:
+    app: iter8-app-stable
+    app.kubernetes.io/instance: gitops
+    service: iter8-app-stable
+  - apiVersion: route.openshift.io/v1
+  name: iter8-app-stable
+  namespace: default
+spec:
+  host: "iter8-app.example.com"
+  port:
+    targetPort: http
+  to:
+    kind: Service
+    name: iter8-app-stable
+    weight: 100
