@@ -7,7 +7,6 @@ metadata:
     app: iter8-app-stable
     app.kubernetes.io/instance: gitops
     service: iter8-app-stable
-  - apiVersion: route.openshift.io/v1
   name: iter8-app-stable
   namespace: default
 spec:
