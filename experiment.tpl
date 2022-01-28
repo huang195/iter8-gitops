@@ -2,8 +2,8 @@
 # collect Iter8's built-in latency and error related metrics
 - task: gen-load-and-collect-metrics-http
   with:
-    errorRanges:
-    - lower: 400
+    percentiles:
+    - 95
     versionInfo:
     - url: CANDIDATE_SVC
 
