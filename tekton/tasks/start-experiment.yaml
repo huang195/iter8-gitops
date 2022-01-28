@@ -23,7 +23,7 @@ spec:
 
   steps:
   - name: start-experiment
-    image: iter8/iter8:0.8.28
+    image: iter8/iter8:0.8.29
     script: |
       #!/usr/bin/env sh
       apt install -y make

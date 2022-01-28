@@ -1,6 +1,6 @@
 # task 1: generate HTTP requests for the model
 # collect Iter8's built-in latency and error related metrics
-- task: gen-load-and-collect-metrics
+- task: gen-load-and-collect-metrics-http
   with:
     errorRanges:
     - lower: 400
