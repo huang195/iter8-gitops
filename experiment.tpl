@@ -13,10 +13,10 @@
   with:
     SLOs:
       # error rate must be 0
-    - metric: built-in/error-rate
+    - metric: built-in/http-error-rate
       upperLimit: 0
       # 95th percentile latency must be under 100 msec
-    - metric: built-in/p95
+    - metric: built-in/http-latency-p95
       upperLimit: 150
 
 # task 3: if SLOs are satisfied, do something
